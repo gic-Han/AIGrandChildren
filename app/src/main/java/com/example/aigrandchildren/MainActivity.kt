@@ -68,7 +68,14 @@ class MainActivity : AppCompatActivity() {
                 et_msg.setText(resultData!![0])
             }
         }
-        // 버튼을 눌러 음성인식 - 버튼 안누르고 대화하는 방법으로 하려면 말하는 상태, 답하는 상태를 나눠서 주고 받는 식으로 하면 될듯
+        /*
+        버튼을 눌러 음성인식
+        버튼 안누르고 대화하는 방법으로 하려면 말하는 상태, 답하는 상태를 나눠서 주고 받는 식으로 하면 될듯
+        var talkingState = true
+        if(talkingState){
+            // 음성인식하는 함수
+        }
+         */
         btn_voice.setOnClickListener {
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intent.putExtra(
