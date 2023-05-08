@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
@@ -25,18 +26,21 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
-    private var recycler_view: RecyclerView = findViewById(R.id.recycler_view)
-    private var tv_welcome: TextView = findViewById(R.id.tv_welcome)
-    private var et_msg: EditText = findViewById(R.id.et_msg)
-    private var btn_send: ImageButton = findViewById(R.id.btn_send)
-    private var btn_voice: ImageButton = findViewById(R.id.btn_voice)
+    lateinit var recycler_view: RecyclerView
     private var activityResultLauncher: ActivityResultLauncher<Intent>? = null
     private var messageList: MutableList<Message>? = null
     private var messageAdapter: MessageAdapter? = null
     private var client: OkHttpClient? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("start","now starting")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val tv_welcome: TextView = findViewById(R.id.tv_welcome)
+        val et_msg: EditText = findViewById(R.id.et_msg)
+        val btn_send: ImageButton = findViewById(R.id.btn_send)
+        val btn_voice: ImageButton = findViewById(R.id.btn_voice)
+        recycler_view = findViewById(R.id.recycler_view)
         recycler_view.setHasFixedSize(true)
         val manager = LinearLayoutManager(this)
         manager.stackFromEnd = true
@@ -44,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         messageList = ArrayList()
         messageAdapter = MessageAdapter(messageList as ArrayList<Message>)
         recycler_view.adapter = messageAdapter
+
+        Log.d("start","now starting")
 
         // 버튼을 눌러 채팅 입력
         btn_send.setOnClickListener {
