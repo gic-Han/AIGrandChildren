@@ -19,43 +19,39 @@ class MessageAdapter(messageList: List<Message>) :
     }
 
     @SuppressLint("InflateParams")
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.chat_item, null)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.chat_item, null)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val message: Message = messageList[position]
         if (message.message.equals(Message.SENT_BY_ME)) {
-            holder.left_chat_view.visibility = View.GONE
-            holder.right_chat_view.visibility = View.VISIBLE
-            holder.right_chat_tv.text = message.message
+            holder.leftChatView.visibility = View.GONE
+            holder.rightChatView.visibility = View.VISIBLE
+            holder.rightChatTv.text = message.message
         } else {
-            holder.right_chat_view.visibility = View.GONE
-            holder.left_chat_view.visibility = View.VISIBLE
-            holder.left_chat_tv.text = message.message
+            holder.rightChatView.visibility = View.GONE
+            holder.leftChatView.visibility = View.VISIBLE
+            holder.leftChatTv.text = message.message
         }
     }
 
     override fun getItemCount(): Int {
         return messageList.size
     }
-
+    // 뷰홀더 부분을 그냥 위에서 바인딩 해도 될듯
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var left_chat_view: LinearLayout
-        var right_chat_view: LinearLayout
-        var left_chat_tv: TextView
-        var right_chat_tv: TextView
+        var leftChatView: LinearLayout
+        var rightChatView: LinearLayout
+        var leftChatTv: TextView
+        var rightChatTv: TextView
 
         init {
-            left_chat_view = itemView.findViewById<LinearLayout>(R.id.left_chat_view)
-            right_chat_view = itemView.findViewById<LinearLayout>(R.id.right_chat_view)
-            left_chat_tv = itemView.findViewById<TextView>(R.id.left_chat_tv)
-            right_chat_tv = itemView.findViewById<TextView>(R.id.right_chat_tv)
+            leftChatView = itemView.findViewById(R.id.left_chat_view)
+            rightChatView = itemView.findViewById(R.id.right_chat_view)
+            leftChatTv = itemView.findViewById(R.id.left_chat_tv)
+            rightChatTv = itemView.findViewById(R.id.right_chat_tv)
         }
     }
-} // 자바파일인데 코틀린으로 변경해서 문제 생길 수 있음
+} // 자바파일인데 코틀린으로 변경해서 문제 생길 수 있음 (onCreateHolder쪽이 문제 될 수 있음)
