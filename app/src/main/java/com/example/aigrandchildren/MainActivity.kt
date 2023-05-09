@@ -1,7 +1,6 @@
 package com.example.aigrandchildren
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -29,12 +28,13 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener  {
     private lateinit var recycler_view: RecyclerView
     private var activityResultLauncher: ActivityResultLauncher<Intent>? = null
     private var messageList: MutableList<Message>? = null
     private var messageAdapter: MessageAdapter? = null
     private var client: OkHttpClient? = null
+    private var tts: TextToSpeech = TextToSpeech(this, this)
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("start","now starting")
         super.onCreate(savedInstanceState)
@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity() {
         messageList = ArrayList()
         messageAdapter = MessageAdapter(messageList as ArrayList<Message>)
         recycler_view.adapter = messageAdapter
-
-        Log.d("start","now starting")
 
         // 버튼을 눌러 채팅 입력
         btn_send.setOnClickListener {
@@ -106,9 +104,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addResponse(response: String?) {
+    fun addResponse(response: String) {
         messageList!!.removeAt(messageList!!.size - 1)
         addToChat(response, Message.SENT_BY_BOT)
+        speakOut(response)
     }
 // 할일 - TTS 넣기, 이전 대화 저장 및 적용
     private fun callAPI(question: String?) {
@@ -145,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             .build()
         client!!.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                addResponse("Failed to load response due to " + e.message)
+                addResponse("${e.message}로 인해 실패했습니다.")
             }
 
             @Throws(IOException::class)
@@ -160,26 +159,13 @@ class MainActivity : AppCompatActivity() {
                         e.printStackTrace()
                     }
                 } else {
-                    addResponse("Failed to load response due to " + response.body!!.string())
+                    addResponse("${response.body!!.string()}으로 인해 실패했습니다.")
                 }
             }
         })
     }
 
-    companion object {
-        val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-        private const val MY_SECRET_KEY = "{Your Secret Key}"
-    }
-}
-
-class TTS : Activity(), TextToSpeech.OnInitListener {
-    private var tts: TextToSpeech = TextToSpeech(this, this)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-
-    private fun speakOut(InputText: CharSequence) {
+    fun speakOut(InputText: String) {
         val text: CharSequence = InputText
         tts.setPitch(0.75.toFloat())
         tts.setSpeechRate(1.2.toFloat())
@@ -201,5 +187,10 @@ class TTS : Activity(), TextToSpeech.OnInitListener {
         } else {
             Log.e("TTS", "Initilization Failed!")
         }
+    }
+
+    companion object {
+        val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
+        private const val MY_SECRET_KEY = "{Your Secret Key}"
     }
 }
