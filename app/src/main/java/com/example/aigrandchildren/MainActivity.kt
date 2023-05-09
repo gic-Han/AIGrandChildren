@@ -1,9 +1,11 @@
 package com.example.aigrandchildren
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -167,5 +169,37 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
         private const val MY_SECRET_KEY = "{Your Secret Key}"
+    }
+}
+
+class TTS : Activity(), TextToSpeech.OnInitListener {
+    private var tts: TextToSpeech = TextToSpeech(this, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    private fun speakOut(InputText: CharSequence) {
+        val text: CharSequence = InputText
+        tts.setPitch(0.75.toFloat())
+        tts.setSpeechRate(1.2.toFloat())
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1")
+    }
+
+    public override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.KOREA)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "This Language is not supported")
+            } else {
+                speakOut("")
+            }
+        } else {
+            Log.e("TTS", "Initilization Failed!")
+        }
     }
 }
