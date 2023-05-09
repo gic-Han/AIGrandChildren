@@ -23,10 +23,12 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-    lateinit var recycler_view: RecyclerView
+    private lateinit var recycler_view: RecyclerView
     private var activityResultLauncher: ActivityResultLauncher<Intent>? = null
     private var messageList: MutableList<Message>? = null
     private var messageAdapter: MessageAdapter? = null
