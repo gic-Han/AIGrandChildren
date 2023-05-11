@@ -1,67 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
-        android:layout_above="@+id/bottom_layout"/>
+    <ImageButton
+        android:id="@+id/btn_call"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#66ff66"
+        android:contentDescription="call"
+        android:src="@drawable/ic_call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_welcome"
-        android:layout_centerInParent="true"
-        android:text="Welcome"
-        android:gravity="center"
-        android:textSize="28sp"
-        />
+    <ImageButton
+        android:id="@+id/btn_message"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#66DDFF"
+        android:contentDescription="message"
+        android:src="@drawable/ic_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:padding="8dp"
-        android:id="@+id/bottom_layout">
+    <ImageButton
+        android:id="@+id/btn_camera"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#AAAAAA"
+        android:contentDescription="camera"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toTopOf="@+id/btn_call"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/et_msg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/btn_voice"
-            android:background="@drawable/rounded_corner"
-            android:hint="Write here"
-            android:padding="16dp" />
+    <ImageButton
+        android:id="@+id/btn_youtube"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#FF3333"
+        android:contentDescription="youtube"
+        android:src="@drawable/ic_youtube"
+        app:layout_constraintBottom_toTopOf="@+id/btn_message"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btn_send"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="5dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
-            android:src="@drawable/ic_send"
-            android:contentDescription="채팅" />
+    <ImageButton
+        android:id="@+id/btn_internet"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#8888FF"
+        android:contentDescription="internet"
+        android:src="@drawable/ic_internet"
+        app:layout_constraintBottom_toTopOf="@+id/btn_youtube"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btn_voice"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="5dp"
-            android:layout_toStartOf="@+id/btn_send"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_voice"
-            android:contentDescription="음성인식" />
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#EEEEEE"
+        android:contentDescription="delete"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toTopOf="@+id/btn_camera"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    </RelativeLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

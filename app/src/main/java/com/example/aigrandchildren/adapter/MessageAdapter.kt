@@ -54,4 +54,4 @@ class MessageAdapter(messageList: List<Message>) :
             rightChatTv = itemView.findViewById(R.id.right_chat_tv)
         }
     }
-} // 자바파일인데 코틀린으로 변경해서 문제 생길 수 있음 (onCreateHolder쪽이 문제 될 수 있음)
+}
