@@ -2,6 +2,7 @@ package com.example.aigrandchildren
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -10,12 +11,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun onDeleteButtonClick() {
+    fun onDeleteButtonClick(v: View) {
         val intent = Intent(this@MainActivity,FilelistActivity::class.java)
         startActivity(intent)
     }
 
-    fun onCallButtonClick() {
+    fun onCallButtonClick(v: View) {
         val intent = Intent(Intent.ACTION_DIAL)
         startActivity(intent)
     }
