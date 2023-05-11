@@ -11,6 +11,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    fun onChatButtonClick(v: View) {
+        val intent = Intent(this@MainActivity,ChatbotActivity::class.java)
+        startActivity(intent)
+    }
+
     fun onDeleteButtonClick(v: View) {
         val intent = Intent(this@MainActivity,FilelistActivity::class.java)
         startActivity(intent)
