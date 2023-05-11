@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AIGrandChildren</string>
+    <string name="btn_call">open call app</string>
+    <string name="btn_message">open message app</string>
+    <string name="btn_camera">open camera app</string>
+    <string name="btn_youtube">open youtube app</string>
+    <string name="btn_internet">open internet app</string>
+    <string name="btn_delete">open delete app</string>
 </resources>

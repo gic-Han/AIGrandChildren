@@ -14,7 +14,8 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#66ff66"
-        android:contentDescription="call"
+        android:contentDescription="@string/btn_call"
+        android:onClick="onCallButtonClick"
         android:src="@drawable/ic_call"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -27,7 +28,7 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#66DDFF"
-        android:contentDescription="message"
+        android:contentDescription="@string/btn_message"
         android:src="@drawable/ic_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -40,7 +41,7 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#AAAAAA"
-        android:contentDescription="camera"
+        android:contentDescription="@string/btn_camera"
         android:src="@drawable/ic_camera"
         app:layout_constraintBottom_toTopOf="@+id/btn_call"
         app:layout_constraintStart_toStartOf="parent" />
@@ -53,7 +54,7 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#FF3333"
-        android:contentDescription="youtube"
+        android:contentDescription="@string/btn_youtube"
         android:src="@drawable/ic_youtube"
         app:layout_constraintBottom_toTopOf="@+id/btn_message"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -66,7 +67,7 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#8888FF"
-        android:contentDescription="internet"
+        android:contentDescription="@string/btn_internet"
         android:src="@drawable/ic_internet"
         app:layout_constraintBottom_toTopOf="@+id/btn_youtube"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -79,7 +80,8 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#EEEEEE"
-        android:contentDescription="delete"
+        android:contentDescription="@string/btn_delete"
+        android:onClick="onDeleteButtonClick"
         android:src="@drawable/ic_delete"
         app:layout_constraintBottom_toTopOf="@+id/btn_camera"
         app:layout_constraintStart_toStartOf="parent" />
