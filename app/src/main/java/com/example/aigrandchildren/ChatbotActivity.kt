@@ -107,6 +107,7 @@ class ChatbotActivity : AppCompatActivity() {
     fun addResponse(response: String) {
         messageList!!.removeAt(messageList!!.size - 1)
         addToChat(response, Message.SENT_BY_BOT)
+        TTSsetting(response)
         lastreply = response
     }
 
