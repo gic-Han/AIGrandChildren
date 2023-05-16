@@ -176,6 +176,6 @@ class ChatbotActivity : AppCompatActivity() {
 
     companion object {
         val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-        private const val MY_SECRET_KEY = "{Your Secret Key}"
+        private const val MY_SECRET_KEY = "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"
     }
 }

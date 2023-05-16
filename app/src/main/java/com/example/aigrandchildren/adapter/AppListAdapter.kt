@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,13 +15,15 @@ import com.example.aigrandchildren.EasyDelete
 import com.example.aigrandchildren.R
 import com.example.aigrandchildren.model.AppInfo
 
-class AppListAdapter : ListAdapter<AppInfo, AppListAdapter.ViewHolder>(AppDiffCallback()) {
+class AppListAdapter(private val deleteApp: Boolean) : ListAdapter<AppInfo, AppListAdapter.ViewHolder>(AppDiffCallback()) {
 
     private var listener: OnItemClickListener? = null
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val appNameTextView: TextView = itemView.findViewById(R.id.appNameTextView)
         val packageNameTextView: TextView = itemView.findViewById(R.id.packageNameTextView)
+        val button: Button? = itemView.findViewById(R.id.actionButton)
+        val appImg: ImageView = itemView.findViewById(R.id.AppImg)
 
         init {
             itemView.setOnClickListener {
@@ -36,8 +40,11 @@ class AppListAdapter : ListAdapter<AppInfo, AppListAdapter.ViewHolder>(AppDiffCa
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_app, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int, ): ViewHolder {
+        val view: View = if (deleteApp)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_app_delete, parent, false)
+        else
+            LayoutInflater.from(parent.context).inflate(R.layout.item_app_display, parent, false)
         return ViewHolder(view)
     }
 
@@ -45,8 +52,11 @@ class AppListAdapter : ListAdapter<AppInfo, AppListAdapter.ViewHolder>(AppDiffCa
         val appInfo = currentList[position]
         holder.appNameTextView.text = appInfo.appName
         holder.packageNameTextView.text = appInfo.packageName
+        holder.appImg.setImageDrawable(appInfo.AppImg)
 
-        holder.itemView.setOnClickListener {
+
+        holder.button?.setOnClickListener {
+            val appInfo = currentList[position]
             listener?.onItemClick(appInfo)
             EasyDelete.deleteApps(appInfo.packageName, holder.itemView.context)
             // 앱 삭제 후 리스트 갱신

@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.app.Activity
+import android.app.AppOpsManager
+import android.content.Context
 import com.example.aigrandchildren.adapter.AppListAdapter
 import com.example.aigrandchildren.model.AppInfo
+import android.provider.Settings
+import androidx.recyclerview.widget.GridLayoutManager
 
 
 class FilelistActivity : AppCompatActivity() {
@@ -18,15 +22,28 @@ class FilelistActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filelist)
+
+        val appOpsManager = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+        val mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), packageName)
+        val granted = mode == AppOpsManager.MODE_ALLOWED
+
+        if (!granted) {
+            // 권한이 허용되지 않았으므로 사용자에게 권한 요청
+            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+        }
+
+        val deleteApp = intent.getBooleanExtra("deleteApp", false)
+
         // 앱 정보 가져오기
-        val appInfo = EasyDelete.getInstalledApps(this)
+        val appInfo = EasyDelete.getInstalledApps(this, deleteApp)
 
         // Adapter 초기화
-        appListAdapter = AppListAdapter()
+        appListAdapter = AppListAdapter(deleteApp)
 
         // RecyclerView 설정
         recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        if(deleteApp) recyclerView.layoutManager = LinearLayoutManager(this)
+        else recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = appListAdapter
 
         // 앱 정보를 RecyclerView에 연결
@@ -35,11 +52,11 @@ class FilelistActivity : AppCompatActivity() {
         // 항목 클릭 이벤트 처리
         appListAdapter.setOnItemClickListener(object : AppListAdapter.OnItemClickListener {
             override fun onItemClick(appInfo: AppInfo) {
-                EasyDelete.deleteApps(appInfo.packageName, applicationContext)
-
-                // 앱 삭제 후 리스트 갱신
-                appListAdapter.currentList.toMutableList().remove(appInfo)
-                appListAdapter.submitList(appListAdapter.currentList)
+//                EasyDelete.deleteApps(appInfo.packageName, applicationContext)
+//
+//                // 앱 삭제 후 리스트 갱신
+//                appListAdapter.currentList.toMutableList().remove(appInfo)
+//                appListAdapter.submitList(appListAdapter.currentList)
             }
         })
     }
