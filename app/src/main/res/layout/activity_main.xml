@@ -6,12 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format24Hour="hh:mm:ss"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066" />
+
     <ImageButton
         android:id="@+id/btn_call"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#66ff66"
         android:contentDescription="@string/btn_call"
@@ -24,12 +36,13 @@
         android:id="@+id/btn_message"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#66DDFF"
         android:contentDescription="@string/btn_message"
         android:src="@drawable/ic_message"
+        android:onClick="onMessageButtonClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -37,12 +50,13 @@
         android:id="@+id/btn_camera"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#AAAAAA"
         android:contentDescription="@string/btn_camera"
         android:src="@drawable/ic_camera"
+        android:onClick="onCameraButtonClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_call"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,12 +64,13 @@
         android:id="@+id/btn_youtube"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#FF3333"
         android:contentDescription="@string/btn_youtube"
         android:src="@drawable/ic_youtube"
+        android:onClick="onYoutubeButtonClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_message"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -63,12 +78,13 @@
         android:id="@+id/btn_internet"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#8888FF"
         android:contentDescription="@string/btn_internet"
         android:src="@drawable/ic_internet"
+        android:onClick="onInternetButtonClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_youtube"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -76,8 +92,8 @@
         android:id="@+id/btn_delete"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#EEEEEE"
         android:contentDescription="@string/btn_delete"
@@ -100,5 +116,16 @@
         android:onClick="onChatButtonClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_allFiles"
+        android:layout_width="157dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="12dp"
+        android:text="file"
+        android:onClick="onFileButtonClick"
+        app:layout_constraintBottom_toTopOf="@+id/btn_delete"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
