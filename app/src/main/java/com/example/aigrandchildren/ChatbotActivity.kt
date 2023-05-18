@@ -37,6 +37,7 @@ class ChatbotActivity : AppCompatActivity() {
     private var client: OkHttpClient? = null
     private var lastchat: String? = null
     private var lastreply: String? = null
+    private var isChat: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("start", "now starting")
         super.onCreate(savedInstanceState)
@@ -62,6 +63,7 @@ class ChatbotActivity : AppCompatActivity() {
             addToChat(question, Message.SENT_BY_ME)
             chatting.setText("")
             callAPI(question)
+            isChat = false
             welcome.visibility = View.GONE
         }
 
@@ -92,7 +94,7 @@ class ChatbotActivity : AppCompatActivity() {
 
         test.setOnClickListener{
             Log.d("check", chatting.text.toString())
-            ttssetting.speakUp(chatting.text.toString())
+            isChat = ttssetting.speakUp(chatting.text.toString())
         }
     }
 
@@ -108,7 +110,7 @@ class ChatbotActivity : AppCompatActivity() {
     fun addResponse(response: String) {
 //        messageList!!.removeAt(messageList!!.size - 1) '...' 안쓸거라 지움
         addToChat(response, Message.SENT_BY_BOT)
-        ttssetting.speakUp(response)
+        isChat = ttssetting.speakUp(response)
         lastreply = response
     }
 
@@ -173,6 +175,11 @@ class ChatbotActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onDestroy() {
+        ttssetting.stop()
+        super.onDestroy()
     }
 
     companion object {

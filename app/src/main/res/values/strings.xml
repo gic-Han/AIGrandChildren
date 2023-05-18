@@ -7,5 +7,5 @@
     <string name="btn_internet">open internet app</string>
     <string name="btn_delete">open delete app</string>
     <string name="btn_allFiles">open allFiles app</string>
-    <string name="chat">GPT</string>
+    <string name="chat">말동무</string>
 </resources>
