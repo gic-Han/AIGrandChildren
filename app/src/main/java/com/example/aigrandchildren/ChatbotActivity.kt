@@ -61,7 +61,6 @@ class ChatbotActivity : AppCompatActivity() {
             welcome.visibility = View.GONE
         }
 
-        // startActivityForResult가 Deprecated되서 registerForActivityResult를 사용
         activityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
@@ -70,14 +69,7 @@ class ChatbotActivity : AppCompatActivity() {
                     chatting.setText(resultData!![0])
                 }
             }
-        /*
-        버튼을 눌러 음성인식
-        버튼 안누르고 대화하는 방법으로 하려면 말하는 상태, 답하는 상태를 나눠서 주고 받는 식으로 하면 될듯
-        var talkingState = true
-        if(talkingState){
-            // 음성인식하는 함수
-        }
-         */
+
         recognize.setOnClickListener {
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intent.putExtra(
@@ -111,7 +103,6 @@ class ChatbotActivity : AppCompatActivity() {
         lastreply = response
     }
 
-    // 할일 - TTS 넣기, 이전 대화 저장 및 적용
     private fun callAPI(question: String?) {
         //okhttp
         messageList!!.add(Message("...", Message.SENT_BY_BOT))
