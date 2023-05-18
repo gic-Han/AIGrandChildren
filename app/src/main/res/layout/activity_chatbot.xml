@@ -31,7 +31,7 @@
 
         <EditText
             android:id="@+id/et_msg"
-            android:layout_width="250dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/btn_voice"
@@ -65,9 +65,9 @@
         <Button
             android:id="@+id/test_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_toStartOf="@+id/et_msg"
-            android:text="Button" />
+            android:text="TTS" />
 
     </RelativeLayout>
 

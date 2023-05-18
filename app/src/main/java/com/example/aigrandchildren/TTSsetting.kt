@@ -15,8 +15,9 @@ object TTSsetting{
         }
     }
 
-    fun speakUp(response: String){
+    fun speakUp(response: String): Boolean{
         tts.speak(response, TextToSpeech.QUEUE_FLUSH,null,null)
+        return true
     }
 
     fun stop() {
