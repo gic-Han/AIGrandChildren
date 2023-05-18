@@ -8,11 +8,6 @@ import android.util.Log
 import android.content.pm.PackageManager
 import com.example.aigrandchildren.model.AppInfo
 import android.app.usage.UsageStatsManager
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import android.app.AppOpsManager
-import android.app.AppOpsManager.OPSTR_GET_USAGE_STATS
 
 object EasyDelete {
 

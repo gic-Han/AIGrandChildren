@@ -53,24 +53,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
+    // 암시적 인텐트 찾긴 했는데 카메라랑 유튜브는 못찾음 갤러리는 암시적 인텐트 있음
     fun onInternetButtonClick(v: View) {
-        val packageName = "com.android.chrome"
-        val packageManager = packageManager
-        val intent = packageManager.getLaunchIntentForPackage(packageName)
-        if (intent != null) {
-            startActivity(intent)
-        }
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_APP_BROWSER)
+//        val packageName = "com.android.chrome"
+//        val packageManager = packageManager
+//        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        startActivity(intent)
     }
 
     fun onMessageButtonClick(v: View) {
-        val packageName = "com.samsung.android.messaging"
-        val packageManager = packageManager
-        val intent = packageManager.getLaunchIntentForPackage(packageName)
-        if (intent != null) {
-            startActivity(intent)
-        }
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_APP_MESSAGING)
+//        val packageName = "com.samsung.android.messaging"
+//        val packageManager = packageManager
+//        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        startActivity(intent)
     }
-
-
 }
