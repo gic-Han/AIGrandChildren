@@ -1,27 +1,27 @@
 package com.example.aigrandchildren
 
-import android.os.Bundle
+import android.content.Context
 import android.speech.tts.TextToSpeech
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import java.util.*
 
-class TTSsetting(private var response: String): AppCompatActivity(){
+object TTSsetting{
     private lateinit var tts: TextToSpeech
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        tts = TextToSpeech(this) {
+    fun init(context: Context) {
+        tts = TextToSpeech(context) {
             tts.language = Locale.KOREAN
-            tts.setPitch(0.75f)
+            tts.setPitch(1.0f)
             tts.setSpeechRate(1.2f)
         }
-        tts.speak(response, TextToSpeech.QUEUE_FLUSH,null,"id1")
     }
 
-    override fun onDestroy() {
+    fun speakUp(response: String): Boolean{
+        tts.speak(response, TextToSpeech.QUEUE_FLUSH,null,null)
+        return true
+    }
+
+    fun stop() {
         tts.stop()
         tts.shutdown()
-
-        super.onDestroy()
     }
 }

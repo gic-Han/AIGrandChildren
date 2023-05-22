@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
@@ -28,13 +29,21 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 class ChatbotActivity : AppCompatActivity() {
+
+    companion object {
+        val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
+        private val MY_SECRET_KEY: String? = null // "Your Secret Key" 직접 넣어도 됨
+    }
+
     private lateinit var recyclerview: RecyclerView
+    private var ttssetting = TTSsetting
     private var activityResultLauncher: ActivityResultLauncher<Intent>? = null
     private var messageList: MutableList<Message>? = null
     private var messageAdapter: MessageAdapter? = null
     private var client: OkHttpClient? = null
     private var lastchat: String? = null
     private var lastreply: String? = null
+    private var isChat: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("start", "now starting")
         super.onCreate(savedInstanceState)
@@ -43,6 +52,7 @@ class ChatbotActivity : AppCompatActivity() {
         val chatting: EditText = findViewById(R.id.et_msg)
         val send: ImageButton = findViewById(R.id.btn_send)
         val recognize: ImageButton = findViewById(R.id.btn_voice)
+        val test: Button = findViewById(R.id.test_btn)
         recyclerview = findViewById(R.id.recycler_view)
         recyclerview.setHasFixedSize(true)
         val manager = LinearLayoutManager(this)
@@ -51,6 +61,11 @@ class ChatbotActivity : AppCompatActivity() {
         messageList = ArrayList()
         messageAdapter = MessageAdapter(messageList as ArrayList<Message>)
         recyclerview.adapter = messageAdapter
+        ttssetting.init(this)
+//
+//        if (MY_SECRET_KEY == null) {
+//            fragment로 키 입력받기
+//        }
 
         // 버튼을 눌러 채팅 입력
         send.setOnClickListener {
@@ -58,6 +73,7 @@ class ChatbotActivity : AppCompatActivity() {
             addToChat(question, Message.SENT_BY_ME)
             chatting.setText("")
             callAPI(question)
+            isChat = false
             welcome.visibility = View.GONE
         }
 
@@ -85,6 +101,11 @@ class ChatbotActivity : AppCompatActivity() {
             .writeTimeout(120, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .build()
+
+        test.setOnClickListener{
+            Log.d("check", chatting.text.toString())
+            isChat = ttssetting.speakUp(chatting.text.toString())
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -97,22 +118,21 @@ class ChatbotActivity : AppCompatActivity() {
     }
 
     fun addResponse(response: String) {
-        messageList!!.removeAt(messageList!!.size - 1)
+//        messageList!!.removeAt(messageList!!.size - 1) '...' 안쓸거라 지움
         addToChat(response, Message.SENT_BY_BOT)
-        TTSsetting(response)
+        isChat = ttssetting.speakUp(response)
         lastreply = response
     }
 
     private fun callAPI(question: String?) {
         //okhttp
-        messageList!!.add(Message("...", Message.SENT_BY_BOT))
         val arr = JSONArray()
         val baseAi = JSONObject()
         val userMsg = JSONObject()
         try {
             //AI 속성설정
             baseAi.put("role", "system")
-            baseAi.put("content", "어르신을 위한 대답을 해줘.")
+            baseAi.put("content", "어르신을 위한 대답을 해줘. 50토큰 이내로.")
             if(lastreply != null) {
                 baseAi.put("role", "user")
                 baseAi.put("content", lastchat)
@@ -129,6 +149,7 @@ class ChatbotActivity : AppCompatActivity() {
         } catch (e: JSONException) {
             throw RuntimeException(e)
         }
+//        messageList!!.add(Message("...", Message.SENT_BY_BOT)) 일단 지움
         val `object` = JSONObject()
         try {
             `object`.put("model", "gpt-3.5-turbo")
@@ -166,8 +187,8 @@ class ChatbotActivity : AppCompatActivity() {
         })
     }
 
-    companion object {
-        val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-        private const val MY_SECRET_KEY = "{Your Secret Key}"
+    override fun onDestroy() {
+        ttssetting.stop()
+        super.onDestroy()
     }
 }

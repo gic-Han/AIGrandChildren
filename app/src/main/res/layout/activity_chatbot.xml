@@ -31,7 +31,7 @@
 
         <EditText
             android:id="@+id/et_msg"
-            android:layout_width="match_parent"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/btn_voice"
@@ -47,9 +47,9 @@
             android:layout_centerInParent="true"
             android:layout_marginStart="5dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="채팅"
             android:padding="8dp"
-            android:src="@drawable/ic_send"
-            android:contentDescription="채팅" />
+            android:src="@drawable/ic_send" />
 
         <ImageButton
             android:id="@+id/btn_voice"
@@ -59,8 +59,15 @@
             android:layout_marginStart="5dp"
             android:layout_toStartOf="@+id/btn_send"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_voice"
-            android:contentDescription="음성인식" />
+            android:contentDescription="음성인식"
+            android:src="@drawable/ic_voice" />
+
+        <Button
+            android:id="@+id/test_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_toStartOf="@+id/et_msg"
+            android:text="TTS" />
 
     </RelativeLayout>
 
