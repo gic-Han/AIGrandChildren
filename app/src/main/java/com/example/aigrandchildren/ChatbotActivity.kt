@@ -29,6 +29,12 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 class ChatbotActivity : AppCompatActivity() {
+
+    companion object {
+        val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
+        private val MY_SECRET_KEY: String? = null // "Your Secret Key" 직접 넣어도 됨
+    }
+
     private lateinit var recyclerview: RecyclerView
     private var ttssetting = TTSsetting
     private var activityResultLauncher: ActivityResultLauncher<Intent>? = null
@@ -56,6 +62,10 @@ class ChatbotActivity : AppCompatActivity() {
         messageAdapter = MessageAdapter(messageList as ArrayList<Message>)
         recyclerview.adapter = messageAdapter
         ttssetting.init(this)
+//
+//        if (MY_SECRET_KEY == null) {
+//            fragment로 키 입력받기
+//        }
 
         // 버튼을 눌러 채팅 입력
         send.setOnClickListener {
@@ -180,10 +190,5 @@ class ChatbotActivity : AppCompatActivity() {
     override fun onDestroy() {
         ttssetting.stop()
         super.onDestroy()
-    }
-
-    companion object {
-        val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-        private const val MY_SECRET_KEY = "{Your Secret Key}"
     }
 }

@@ -21,10 +21,11 @@
 
     <TextView
         android:id="@+id/appNameTextView"
-        android:layout_width="0dp"
+        android:layout_width="174dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
+        android:gravity="center"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
