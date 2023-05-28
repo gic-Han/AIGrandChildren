@@ -97,7 +97,7 @@
         android:onClick="onDeleteButtonClick"
         android:src="@drawable/ic_delete"
         app:layout_constraintBottom_toTopOf="@+id/btn_camera"
-        app:layout_constraintEnd_toStartOf="@+id/btn_allFiles"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
@@ -111,7 +111,8 @@
         android:onClick="onFileButtonClick"
         android:src="@drawable/ic_folder"
         app:layout_constraintBottom_toTopOf="@+id/btn_camera"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"/>
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <Button
         android:id="@+id/btn_chat"
@@ -119,7 +120,7 @@
         android:layout_height="100dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="#ffaaFF"
+        android:backgroundTint="#ffaaff"
         android:onClick="onChatButtonClick"
         android:text="@string/chat"
         android:textColor="#ffffff"
@@ -133,6 +134,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.50121653" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

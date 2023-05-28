@@ -49,16 +49,6 @@ class FilelistActivity : AppCompatActivity() {
         // 앱 정보를 RecyclerView에 연결
         appListAdapter.submitList(appInfo)
 
-        // 항목 클릭 이벤트 처리
-        appListAdapter.setOnItemClickListener(object : AppListAdapter.OnItemClickListener {
-            override fun onItemClick(appInfo: AppInfo) {
-//                EasyDelete.deleteApps(appInfo.packageName, applicationContext)
-//
-//                // 앱 삭제 후 리스트 갱신
-//                appListAdapter.currentList.toMutableList().remove(appInfo)
-//                appListAdapter.submitList(appListAdapter.currentList)
-            }
-        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

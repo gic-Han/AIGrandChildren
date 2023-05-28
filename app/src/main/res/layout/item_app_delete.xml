@@ -45,7 +45,9 @@
         android:id="@+id/actionButton"
         android:layout_width="142dp"
         android:layout_height="49dp"
+        android:background="@drawable/gradation"
         android:text="삭제"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/appNameTextView" />
 

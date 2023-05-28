@@ -44,6 +44,12 @@ class ChatbotActivity : AppCompatActivity() {
     private var lastchat: String? = null
     private var lastreply: String? = null
     private var isChat: Boolean = true
+    set(value) {
+        field = value
+        if (value) {
+//            recognizeVoiceInput()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("start", "now starting")
         super.onCreate(savedInstanceState)
@@ -62,7 +68,7 @@ class ChatbotActivity : AppCompatActivity() {
         messageAdapter = MessageAdapter(messageList as ArrayList<Message>)
         recyclerview.adapter = messageAdapter
         ttssetting.init(this)
-//
+
 //        if (MY_SECRET_KEY == null) {
 //            fragment로 키 입력받기
 //        }
