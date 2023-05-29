@@ -1,11 +1,13 @@
 package com.example.aigrandchildren
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import android.Manifest
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +39,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onCameraButtonClick(v: View) {
-        val packageName = "com.sec.android.app.camera"
-        val packageManager = packageManager
-        val intent = packageManager.getLaunchIntentForPackage(packageName)
-        if (intent != null) {
-            startActivity(intent)
-        }
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivity(intent)
     }
 
     fun onYoutubeButtonClick(v: View) {

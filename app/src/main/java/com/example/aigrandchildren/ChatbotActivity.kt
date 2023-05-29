@@ -27,12 +27,12 @@ import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
-
+// tts 말 끊는부분, 음성인식 길이 늘리는 부분
 class ChatbotActivity : AppCompatActivity() {
 
     companion object {
         val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-        private val MY_SECRET_KEY: String? = null // "Your Secret Key" 직접 넣어도 됨
+        private val MY_SECRET_KEY: String? = "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"
     }
 
     private lateinit var recyclerview: RecyclerView
@@ -44,6 +44,11 @@ class ChatbotActivity : AppCompatActivity() {
     private var lastchat: String? = null
     private var lastreply: String? = null
     private var isChat: Boolean = true
+        set(value) {
+            field = value
+            if (value)
+                recognizeVoiceInput()
+        }
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("start", "now starting")
         super.onCreate(savedInstanceState)
@@ -73,28 +78,27 @@ class ChatbotActivity : AppCompatActivity() {
             addToChat(question, Message.SENT_BY_ME)
             chatting.setText("")
             callAPI(question)
-            isChat = false
             welcome.visibility = View.GONE
+            isChat = false
+        }
+        // tts 끝났을 때
+        TTSsetting.setTTSFinishedListener {
+            isChat = true
         }
 
         activityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
+                    Log.d("check", "RESULT_OK = true")
                     val data = result.data
                     val resultData = data!!.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                    chatting.setText(resultData!![0])
+                    addToChat(resultData!![0], Message.SENT_BY_ME)
+                    callAPI(resultData!![0])
                 }
             }
 
         recognize.setOnClickListener {
-            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-            intent.putExtra(
-                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-            )
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko_KR")
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "음성인식을 시작합니다.")
-            activityResultLauncher!!.launch(intent)
+            recognizeVoiceInput()
         }
         client = OkHttpClient().newBuilder()
             .connectTimeout(60, TimeUnit.SECONDS)
@@ -117,11 +121,24 @@ class ChatbotActivity : AppCompatActivity() {
         }
     }
 
+    private fun recognizeVoiceInput() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+        )
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko_KR")
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "음성인식을 시작합니다.")
+        activityResultLauncher!!.launch(intent) // 시작하자마자 이거
+    }
+
     fun addResponse(response: String) {
 //        messageList!!.removeAt(messageList!!.size - 1) '...' 안쓸거라 지움
         addToChat(response, Message.SENT_BY_BOT)
-        isChat = ttssetting.speakUp(response)
         lastreply = response
+        ttssetting.speakUp(response)
+        Log.d("isChat", "SENT_BY_BOT")
+
     }
 
     private fun callAPI(question: String?) {
