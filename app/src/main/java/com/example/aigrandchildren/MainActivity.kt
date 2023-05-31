@@ -12,7 +12,9 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
-    private val REQUEST_PHONE_PERMISSION = 1
+    companion object {
+        private const val REQUEST_PHONE_PERMISSION = 1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
