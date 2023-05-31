@@ -8,6 +8,7 @@ import android.util.Log
 
 class CallReceiver : BroadcastReceiver() {
 
+    private var phoneNumber: String? = null
     override fun onReceive(context: Context, intent: Intent) {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
         if (intent.action == TelephonyManager.ACTION_PHONE_STATE_CHANGED) {
@@ -17,9 +18,15 @@ class CallReceiver : BroadcastReceiver() {
             if (phoneState == TelephonyManager.EXTRA_STATE_RINGING) {
                 // 전화가 왔을 때 실행됩니다.
                 Log.d("call","전화번호 저장")
-                val phoneNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
+                phoneNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
                 Log.d("call", "전화번호: $phoneNumber")
             }
+        }
+        if (phoneNumber != null) {
+            val intent1 = Intent(context, PhoneNumberSearch::class.java)
+            intent1.putExtra("phoneNumber", phoneNumber)
+            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent1)
         }
     }
 }

@@ -32,15 +32,13 @@ class MainActivity : AppCompatActivity() {
         )
 
         // 부여된 권한을 확인합니다.
-        val grantedPermissions = permissions.filter {
-            ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
-        }
+        val grantedPermissions = permissions.filter {ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED }
 
         if (grantedPermissions.size == permissions.size) {
-            // 모든 권한이 이미 부여되어 있으므로 전화번호를 가져옵니다.
-            Log.d("call", "전화번호 가져오기")
+            // 모든 권한이 부여
+            Log.d("start", "시작")
         } else {
-            // 필요한 권한이 부여되지 않은 경우, 사용자에게 권한 요청을 합니다.
+            // 필요한 권한이 부여되지 않은 경우, 사용자에게 권한 요청
             ActivityCompat.requestPermissions(this, permissions, REQUEST_PHONE_PERMISSION)
         }
     }
