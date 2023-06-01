@@ -8,6 +8,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         val permissions = arrayOf(
             Manifest.permission.READ_PHONE_STATE,  // 전화 상태를 가져오기 위한 권한
             Manifest.permission.READ_CALL_LOG,     // 통화 로그를 읽기 위한 권한
+            Manifest.permission.READ_CONTACTS,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO
         )
@@ -43,29 +45,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onChatButtonClick() {
+    fun onChatButtonClick(v: View) {
         val intent = Intent(this@MainActivity,ChatbotActivity::class.java)
         startActivity(intent)
     }
 
-    fun onDeleteButtonClick() {
+    fun onDeleteButtonClick(v: View) {
         val intent = Intent(this@MainActivity,FilelistActivity::class.java)
         intent.putExtra("deleteApp", true)
         startActivity(intent)
     }
 
-    fun onFileButtonClick() {
+    fun onFileButtonClick(v: View) {
         val intent = Intent(this@MainActivity,FilelistActivity::class.java)
         intent.putExtra("deleteApp", false)
         startActivity(intent)
     }
 
-    fun onCallButtonClick() {
+    fun onCallButtonClick(v: View) {
         val intent = Intent(Intent.ACTION_DIAL)
         startActivity(intent)
     }
 
-    fun onCameraButtonClick() {
+    fun onCameraButtonClick(v: View) {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //        val packageName = "com.sec.android.app.camera"
 //        val packageManager = packageManager
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun onYoutubeButtonClick() {
+    fun onYoutubeButtonClick(v: View) {
         val packageName = "com.google.android.youtube"
         val packageManager = packageManager
         val intent = packageManager.getLaunchIntentForPackage(packageName)
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onInternetButtonClick() {
+    fun onInternetButtonClick(v: View) {
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_APP_BROWSER)
 //        val packageName = "com.android.chrome"
@@ -94,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun onMessageButtonClick() {
+    fun onMessageButtonClick(v: View) {
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_APP_MESSAGING)
 //        val packageName = "com.samsung.android.messaging"
