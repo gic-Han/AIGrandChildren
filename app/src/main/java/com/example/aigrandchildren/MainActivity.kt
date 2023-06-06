@@ -26,8 +26,10 @@ class MainActivity : AppCompatActivity() {
     private fun checkPhonePermission() {
         // 필요한 권한을 배열로 정의합니다.
         val permissions = arrayOf(
-            Manifest.permission.READ_PHONE_STATE,  // 전화 상태를 가져오기 위한 권한
-            Manifest.permission.READ_CALL_LOG,     // 통화 로그를 읽기 위한 권한
+            Manifest.permission.READ_PHONE_STATE,   // 전화 상태를 가져오기 위한 권한
+            Manifest.permission.READ_CALL_LOG,      // 통화 로그를 읽기 위한 권한
+            Manifest.permission.RECEIVE_SMS,        // SMS를 수신하기 위한 권한
+            Manifest.permission.READ_SMS,           // SMS를 읽기 위한 권한
             Manifest.permission.READ_CONTACTS,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO

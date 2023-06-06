@@ -3,6 +3,7 @@ package com.example.aigrandchildren
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.telephony.SmsMessage
 import android.telephony.TelephonyManager
 import android.util.Log
 
@@ -22,6 +23,25 @@ class CallReceiver : BroadcastReceiver() {
                 Log.d("call", "전화번호: $phoneNumber")
             }
         }
+        if(intent.action == "android.provider.Telephony.SMS_RECEIVED") {
+            // SMS 수신 시 실행됩니다.
+            Log.d("sms", "SMS 수신")
+            val bundle = intent.extras
+            if (bundle != null) {
+                val pdus = bundle.get("pdus") as Array<*>?
+                if (pdus != null) {
+                    for (pdu in pdus) {
+                        val smsMessage = SmsMessage.createFromPdu(pdu as ByteArray)
+                        phoneNumber = smsMessage.originatingAddress
+                        val messageBody = smsMessage.messageBody
+
+                        Log.d("sms", "전화번호: $phoneNumber")
+                        Log.d("sms", "내용: $messageBody")
+                    }
+                }
+            }
+        }
+
         if (phoneNumber != null) {
             val intent1 = Intent(context, PhoneNumberSearch::class.java)
             intent1.putExtra("phoneNumber", phoneNumber)
