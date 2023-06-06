@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
@@ -58,7 +57,6 @@ class ChatbotActivity : AppCompatActivity() {
         val chatting: EditText = findViewById(R.id.et_msg)
         val send: ImageButton = findViewById(R.id.btn_send)
         val recognize: ImageButton = findViewById(R.id.btn_voice)
-        val test: Button = findViewById(R.id.test_btn)
         recyclerview = findViewById(R.id.recycler_view)
         recyclerview.setHasFixedSize(true)
         val manager = LinearLayoutManager(this)
@@ -108,10 +106,6 @@ class ChatbotActivity : AppCompatActivity() {
             .readTimeout(60, TimeUnit.SECONDS)
             .build()
 
-        test.setOnClickListener{
-            Log.d("check", chatting.text.toString())
-            isChat = ttssetting.speakUp(chatting.text.toString())
-        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
