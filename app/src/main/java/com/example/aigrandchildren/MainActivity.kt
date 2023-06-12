@@ -89,6 +89,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun onKakaotalkButtonClick(v: View) {
+        val packageName = "com.kakao.talk"
+        val packageManager = packageManager
+        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        if (intent != null) {
+            startActivity(intent)
+        }
+    }
+
     fun onInternetButtonClick(v: View) {
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_APP_BROWSER)
