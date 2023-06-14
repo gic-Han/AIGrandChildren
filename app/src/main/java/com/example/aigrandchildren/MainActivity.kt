@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 
+
 class MainActivity : AppCompatActivity() {
 
     companion object {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         checkPhonePermission()
     }
+
 
     private fun checkPhonePermission() {
         // 필요한 권한을 배열로 정의합니다.

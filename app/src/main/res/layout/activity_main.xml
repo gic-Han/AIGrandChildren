@@ -9,69 +9,64 @@
     <TextClock
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:format24Hour="hh:mm:ss"
+        android:format12Hour="MM-dd hh:mm:ss a"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_allFiles"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.171" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_call"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/str_call"
         android:contentDescription="@string/btn_call"
-        android:onClick="onCallButtonClick"
         android:drawableTop="@drawable/call_icon"
+        android:drawablePadding="-12dp"
+        android:onClick="onCallButtonClick"
         android:paddingTop="10dp"
         android:text="전화"
         android:textSize="20dp"
-        android:drawablePadding="-12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintEnd_toStartOf="@+id/btn_camera"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_message"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/str_message"
         android:contentDescription="@string/btn_message"
-        android:onClick="onMessageButtonClick"
         android:drawableTop="@drawable/message_icon"
+        android:drawablePadding="0dp"
+        android:onClick="onMessageButtonClick"
         android:paddingTop="15dp"
         android:text="문자"
         android:textSize="20dp"
-        android:drawablePadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.704"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        app:layout_constraintStart_toEndOf="@+id/btn_camera" />
 
     <Button
         android:id="@+id/btn_camera"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/str_camera"
         android:contentDescription="@string/btn_camera"
-        android:onClick="onCameraButtonClick"
         android:drawableTop="@drawable/camera_icon"
+        android:drawablePadding="-3dp"
+        android:onClick="onCameraButtonClick"
         android:paddingTop="10dp"
         android:text="카메라"
         android:textSize="20dp"
-        android:drawablePadding="-3dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_message"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toEndOf="@+id/btn_call" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_youtube"
@@ -124,7 +119,6 @@
         android:textSize="22dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_kakaotalk"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -142,7 +136,6 @@
         android:textSize="22dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_delete"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -159,7 +152,6 @@
         android:textSize="22dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_internet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -183,7 +175,6 @@
         android:textSize="22dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_call"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
