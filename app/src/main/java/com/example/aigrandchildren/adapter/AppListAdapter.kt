@@ -1,19 +1,23 @@
 package com.example.aigrandchildren.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aigrandchildren.EasyDelete
 import com.example.aigrandchildren.R
 import com.example.aigrandchildren.model.AppInfo
+
 
 class AppListAdapter(private val deleteApp: Boolean) : ListAdapter<AppInfo, AppListAdapter.ViewHolder>(AppDiffCallback()) {
 
@@ -40,7 +44,7 @@ class AppListAdapter(private val deleteApp: Boolean) : ListAdapter<AppInfo, AppL
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int, ): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = if (deleteApp)
             LayoutInflater.from(parent.context).inflate(R.layout.item_app_delete, parent, false)
         else
@@ -54,13 +58,12 @@ class AppListAdapter(private val deleteApp: Boolean) : ListAdapter<AppInfo, AppL
         holder.packageNameTextView.text = appInfo.packageName
         holder.appImg.setImageDrawable(appInfo.AppImg)
 
-
         holder.button?.setOnClickListener {
-            val appInfo = currentList[position]
-            listener?.onItemClick(appInfo)
-            EasyDelete.deleteApps(appInfo.packageName, holder.itemView.context)
+            val appinfo = currentList[position]
+            listener?.onItemClick(appinfo)
+            EasyDelete.deleteApps(appinfo.packageName, holder.itemView.context)
             // 앱 삭제 후 리스트 갱신
-            submitList(currentList.filter { it.packageName != appInfo.packageName })
+            submitList(currentList.filter { it.packageName != appinfo.packageName })
         }
     }
 
