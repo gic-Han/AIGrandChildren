@@ -11,6 +11,8 @@ import android.content.Context
 import com.example.aigrandchildren.adapter.AppListAdapter
 import com.example.aigrandchildren.model.AppInfo
 import android.provider.Settings
+import android.widget.GridLayout
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.GridLayoutManager
 
 
