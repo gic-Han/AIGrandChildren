@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 
+
 class MainActivity : AppCompatActivity() {
 
     companion object {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         checkPhonePermission()
     }
+
 
     private fun checkPhonePermission() {
         // 필요한 권한을 배열로 정의합니다.
@@ -82,6 +84,15 @@ class MainActivity : AppCompatActivity() {
 
     fun onYoutubeButtonClick(v: View) {
         val packageName = "com.google.android.youtube"
+        val packageManager = packageManager
+        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        if (intent != null) {
+            startActivity(intent)
+        }
+    }
+
+    fun onKakaotalkButtonClick(v: View) {
+        val packageName = "com.kakao.talk"
         val packageManager = packageManager
         val intent = packageManager.getLaunchIntentForPackage(packageName)
         if (intent != null) {
