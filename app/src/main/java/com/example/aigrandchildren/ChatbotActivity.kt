@@ -31,7 +31,7 @@ class ChatbotActivity : AppCompatActivity() {
 
     companion object {
         val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-        private val MY_SECRET_KEY: String? = "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"//"MY_SECRET_KEY"
+        private val MY_SECRET_KEY: String? = "MY_SECRET_KEY"
     }
 
     private lateinit var recyclerview: RecyclerView
