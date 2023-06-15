@@ -47,8 +47,14 @@ object EasyDelete {
             }
         }
 
-        if (deleteApp) appList.sortBy{ it.lastTimeUsed }
-        else appList.sortByDescending { it.lastTimeUsed }
+        if (deleteApp) {
+            appList.sortBy{ it.lastTimeUsed }
+            appList.removeAt(appList.size - 1)
+        }
+        else {
+            appList.sortByDescending { it.lastTimeUsed }
+            appList.removeAt(0)
+        }
 
 
         return appList
