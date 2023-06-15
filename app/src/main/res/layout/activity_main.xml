@@ -43,7 +43,6 @@
         android:background="@drawable/str_message"
         android:contentDescription="@string/btn_message"
         android:drawableTop="@drawable/message_icon"
-        android:drawablePadding="0dp"
         android:onClick="onMessageButtonClick"
         android:paddingTop="15dp"
         android:text="문자"
