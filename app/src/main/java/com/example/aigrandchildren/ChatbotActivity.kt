@@ -64,10 +64,6 @@ class ChatbotActivity : AppCompatActivity() {
         messageAdapter = MessageAdapter(messageList as ArrayList<Message>)
         recyclerview.adapter = messageAdapter
         ttssetting.init(this)
-//
-//        if (MY_SECRET_KEY == null) {
-//            fragment로 키 입력받기
-//        }
 
         // 버튼을 눌러 채팅 입력
         send.setOnClickListener {
@@ -125,7 +121,6 @@ class ChatbotActivity : AppCompatActivity() {
     }
 
     fun addResponse(response: String) {
-//        messageList!!.removeAt(messageList!!.size - 1) '...' 안쓸거라 지움
         addToChat(response, Message.SENT_BY_BOT)
         lastreply = response
         ttssetting.speakUp(response)
@@ -158,7 +153,6 @@ class ChatbotActivity : AppCompatActivity() {
         } catch (e: JSONException) {
             throw RuntimeException(e)
         }
-//        messageList!!.add(Message("...", Message.SENT_BY_BOT)) 일단 지움
         val `object` = JSONObject()
         try {
             `object`.put("model", "gpt-3.5-turbo")

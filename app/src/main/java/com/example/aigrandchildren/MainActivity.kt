@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import android.Manifest
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -23,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         checkPhonePermission()
     }
-
 
     private fun checkPhonePermission() {
         // 필요한 권한을 배열로 정의합니다.
@@ -73,12 +73,6 @@ class MainActivity : AppCompatActivity() {
 
     fun onCameraButtonClick(v: View) {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//        val packageName = "com.sec.android.app.camera"
-//        val packageManager = packageManager
-//        val intent = packageManager.getLaunchIntentForPackage(packageName)
-//        if (intent != null) {
-//            startActivity(intent)
-//        }
         startActivity(intent)
     }
 
@@ -94,8 +88,12 @@ class MainActivity : AppCompatActivity() {
     fun onKakaotalkButtonClick(v: View) {
         val packageName = "com.kakao.talk"
         val packageManager = packageManager
-        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        var intent = packageManager.getLaunchIntentForPackage(packageName)
         if (intent != null) {
+            startActivity(intent)
+        } else {
+            intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("market://details?id=$packageName")
             startActivity(intent)
         }
     }

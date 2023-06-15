@@ -52,7 +52,7 @@
         android:id="@+id/actionButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/file_custom"
+        android:background="@drawable/rounded_corner"
         android:backgroundTint="#FF5555"
         android:foreground="@drawable/touch_ic_custom"
         android:src="@drawable/ic_delete"
