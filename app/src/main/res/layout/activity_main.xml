@@ -30,6 +30,7 @@
         android:paddingTop="10dp"
         android:text="전화"
         android:textSize="20sp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_camera"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,6 +48,7 @@
         android:paddingTop="15dp"
         android:text="문자"
         android:textSize="20sp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_camera" />
@@ -64,6 +66,7 @@
         android:paddingTop="10dp"
         android:text="카메라"
         android:textSize="20sp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -82,6 +85,7 @@
         android:text="유튜브"
         android:textSize="22sp"
         android:drawablePadding="-13dp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toTopOf="@+id/btn_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -100,6 +104,7 @@
         android:text="인터넷"
         android:textSize="22sp"
         android:drawablePadding="-10dp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toTopOf="@+id/btn_youtube"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -117,6 +122,7 @@
         android:paddingTop="15dp"
         android:text="휴지통"
         android:textSize="22sp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toTopOf="@+id/btn_kakaotalk"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent" />
@@ -134,6 +140,7 @@
         android:paddingTop="10dp"
         android:text="다른 앱들"
         android:textSize="22sp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toTopOf="@+id/btn_delete"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent" />
@@ -150,6 +157,7 @@
         android:paddingTop="15dp"
         android:text="말동무"
         android:textSize="22sp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toTopOf="@+id/btn_internet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"/>
@@ -173,6 +181,7 @@
         android:paddingTop="15dp"
         android:text="카카오톡"
         android:textSize="22sp"
+        android:foreground="@drawable/touch_ic_custom"
         app:layout_constraintBottom_toTopOf="@+id/btn_call"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent" />
