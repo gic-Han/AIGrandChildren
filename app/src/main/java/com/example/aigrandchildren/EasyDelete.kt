@@ -20,17 +20,6 @@ object EasyDelete {
         context.startActivity(intent)
     }
 
-    private fun isAppInstalled(packageName: String, context: Context): Boolean {
-        val packageManager = context.packageManager
-        return try {
-            packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
-            true
-        } catch (e: PackageManager.NameNotFoundException) {
-            false
-        }
-    }
-
-
     fun getInstalledApps(context: Context, deleteApp: Boolean): List<AppInfo> {
 
         val packageManager = context.packageManager

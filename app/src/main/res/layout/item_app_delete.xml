@@ -3,30 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:background="#D9D9D9">
 
     <ImageView
         android:id="@+id/AppImg"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="168dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/actionButton"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintEnd_toStartOf="@+id/appNameTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/appNameTextView"
         android:layout_width="0dp"
-        android:layout_height="52dp"
-        android:textSize="16sp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/AppImg"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/actionButton"
+        app:layout_constraintStart_toEndOf="@+id/AppImg"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="AppName" />
 
@@ -34,24 +41,23 @@
         android:id="@+id/packageNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="1sp"
+        android:textSize="0sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/appNameTextView"
         tools:text="com.example.packageName" />
 
-    <Button
+
+    <ImageButton
         android:id="@+id/actionButton"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rounded_corner"
-        android:foreground="@drawable/file_custom"
-        android:shadowColor="#ff0000"
-        android:shadowDy="5"
-        android:shadowRadius="5"
-        android:text="삭제"
-        android:textSize="20sp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/file_custom"
+        android:backgroundTint="#FF5555"
+        android:foreground="@drawable/touch_ic_custom"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/appNameTextView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
