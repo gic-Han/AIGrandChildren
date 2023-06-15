@@ -31,7 +31,7 @@ class ChatbotActivity : AppCompatActivity() {
 
     companion object {
         val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
-        private val MY_SECRET_KEY: String? = "MY_SECRET_KEY"
+        private val MY_SECRET_KEY: String? = "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"//"MY_SECRET_KEY"
     }
 
     private lateinit var recyclerview: RecyclerView
@@ -52,7 +52,6 @@ class ChatbotActivity : AppCompatActivity() {
         Log.d("start", "now starting")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chatbot)
-        val welcome: TextView = findViewById(R.id.tv_welcome)
         val chatting: EditText = findViewById(R.id.et_msg)
         val send: ImageButton = findViewById(R.id.btn_send)
         val recognize: ImageButton = findViewById(R.id.btn_voice)
@@ -76,7 +75,6 @@ class ChatbotActivity : AppCompatActivity() {
             addToChat(question, Message.SENT_BY_ME)
             chatting.setText("")
             callAPI(question)
-            welcome.visibility = View.GONE
             isChat = false
         }
         // tts 끝났을 때
@@ -91,6 +89,7 @@ class ChatbotActivity : AppCompatActivity() {
                     val data = result.data
                     val resultData = data!!.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     addToChat(resultData!![0], Message.SENT_BY_ME)
+                    resultData!![0] = resultData!![0] + "대답은 20단어 이내로 해줘"
                     callAPI(resultData!![0])
                 }
             }
@@ -142,7 +141,7 @@ class ChatbotActivity : AppCompatActivity() {
         try {
             //AI 속성설정
             baseAi.put("role", "system")
-            baseAi.put("content", "어르신을 위한 대답을 해줘. 50토큰 이내로.")
+            baseAi.put("content", "짧게 어르신을 위한 대답을 해줘.")
             if(lastreply != null) {
                 baseAi.put("role", "user")
                 baseAi.put("content", lastchat)
@@ -164,6 +163,7 @@ class ChatbotActivity : AppCompatActivity() {
         try {
             `object`.put("model", "gpt-3.5-turbo")
             `object`.put("messages", arr)
+            `object`.put("temperature", 0.1)
         } catch (e: JSONException) {
             e.printStackTrace()
         }
