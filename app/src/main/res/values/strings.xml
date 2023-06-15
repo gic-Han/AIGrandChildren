@@ -9,5 +9,5 @@
     <string name="btn_allFiles">open allFiles app</string>
     <string name="chat">말동무</string>
     <string name="cancel">Cancel</string>
-    <string name="dialog">모르는 번호로\n전화가 왔습니다.\n보이스피싱,\n사기전화에\n주의하세요</string>
+    <string name="dialog">모르는 번호로\n연락이 왔습니다.\n보이스피싱,\n사기전화에\n주의하세요</string>
 </resources>
