@@ -54,7 +54,7 @@
         android:layout_height="80dp"
         android:background="@drawable/file_custom"
         android:backgroundTint="#FF5555"
-        android:foreground="@drawable/delete_custom"
+        android:foreground="@drawable/touch_ic_custom"
         android:src="@drawable/ic_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
